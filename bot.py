@@ -26,24 +26,19 @@ def grayify(image):
 def image_to_ascii(image_stream, new_width=40):
     # Переводим в оттенки серого
     image = Image.open(image_stream).convert('L')
-
     # меняем размер сохраняя отношение сторон
     width, height = image.size
     aspect_ratio = height / float(width)
     new_height = int(
         aspect_ratio * new_width * 0.55)  # 0,55 так как буквы выше чем шире
     img_resized = image.resize((new_width, new_height))
-
     img_str = pixels_to_ascii(img_resized)
     img_width = img_resized.width
-
     max_characters = 4000 - (new_width + 1)
     max_rows = max_characters // (new_width + 1)
-
     ascii_art = ""
     for i in range(0, min(max_rows * img_width, len(img_str)), img_width):
         ascii_art += img_str[i:i + img_width] + "\n"
-
     return ascii_art
 
 
@@ -102,11 +97,9 @@ def pixelate_and_send(message):
     photo_id = user_states[message.chat.id]['photo']
     file_info = bot.get_file(photo_id)
     downloaded_file = bot.download_file(file_info.file_path)
-
     image_stream = io.BytesIO(downloaded_file)
     image = Image.open(image_stream)
     pixelated = pixelate_image(image, 20)
-
     output_stream = io.BytesIO()
     pixelated.save(output_stream, format="JPEG")
     output_stream.seek(0)
@@ -116,6 +109,7 @@ def pixelate_and_send(message):
 def handle_message(message):
     global ASCII_CHARS
     ASCII_CHARS = list(set(message.text))
+
 
 def ascii_and_send(message):
     photo_id = user_states[message.chat.id]['photo']
