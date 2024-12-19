@@ -73,6 +73,11 @@ def invert_colors(image):
     return ImageOps.invert(image)
 
 
+# Создает отраженную копию изображения по горизонтали.
+def mirror_image(image):
+   return ImageOps.mirror(image)
+
+
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
     bot.reply_to(message, "Send me an image, and I'll provide options for you!")
