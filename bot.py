@@ -78,6 +78,11 @@ def mirror_image(image):
    return ImageOps.mirror(image)
 
 
+# Изображение преобразуется так, чтобы его цвета отображались в виде тепловой карты, от синего (холодные области) до красного (теплые области)
+def convert_to_heatmap(image):
+    return ImageOps.colorize(image.convert('L'), black='blue', white='red', mid='#984f4f', midpoint=127)
+
+
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
     bot.reply_to(message, "Send me an image, and I'll provide options for you!")
