@@ -83,6 +83,20 @@ def convert_to_heatmap(image):
     return ImageOps.colorize(image.convert('L'), black='blue', white='red', mid='#984f4f', midpoint=127)
 
 
+# Изменяет размер изображения, сохраняя пропорции, чтобы его максимальное измерение не превышало заданного максимума (например, 512 пикселей)
+def resize_for_sticker(image, max_size=512):
+    width, height = image.size
+    if width > max_size or height > max_size:
+        if width > height:
+            new_width = max_size
+            new_height = int(height * (max_size / width))
+        else:
+            new_height = max_size
+            new_width = int(width * (max_size / height))
+        image = image.resize((new_width, new_height))
+    return image
+
+
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
     bot.reply_to(message, "Send me an image, and I'll provide options for you!")
