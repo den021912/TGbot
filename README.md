@@ -60,6 +60,8 @@ pixels_to_ascii(image):
 
 - @bot.message_handler(commands=['start', 'help']): Реагирует на команды /start и /help, отправляя приветственное сообщение.
 
+- @bot.message_handler(commands=['random_joke']): Отправляет случайную шутку пользователю.
+
 - @bot.message_handler(content_types=['photo']): Реагирует на изображения, отправляемые пользователем, и предлагает варианты обработки.
 
 Клавиатура для взаимодействия:
