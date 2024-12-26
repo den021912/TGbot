@@ -23,6 +23,16 @@ JOKES = [
     "Парень, который в школе читал только краткие пересказы произведений, вырос, состарился и умер."
 ]
 
+# Список комплиментов
+COMPLIMENTS = [
+    "Ты выглядишь потрясающе сегодня!",
+    "Ты просто совершенство.",
+    "У меня начинает быстрее биться сердце, когда я вижу тебя",
+    "Мне нравится твой стиль.",
+    "У тебя самый лучший смех.",
+    "Ты талантлив!",
+    "Ты самый  умный"
+]
 
 def resize_image(image, new_width=100):
     width, height = image.size
@@ -119,6 +129,12 @@ def send_random_joke(message):
     joke = random.choice(JOKES)
     bot.reply_to(message, joke)
 
+
+# Отправляет случайный комплимент
+@bot.message_handler(commands=['RandomCompliment'])
+def send_random_compliment(message):
+    random_compliment = random.choice(COMPLIMENTS)
+    bot.send_message(message.chat.id, random_compliment)
 
 @bot.message_handler(content_types=['photo'])
 def handle_photo(message):
