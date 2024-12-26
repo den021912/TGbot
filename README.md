@@ -62,6 +62,8 @@ pixels_to_ascii(image):
 
 - @bot.message_handler(commands=['random_joke']): Отправляет случайную шутку пользователю.
 
+- @bot.message_handler(commands=['RandomCompliment']): Отправляет случайный комплимент пользователю.
+
 - @bot.message_handler(content_types=['photo']): Реагирует на изображения, отправляемые пользователем, и предлагает варианты обработки.
 
 Клавиатура для взаимодействия:
