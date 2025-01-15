@@ -135,6 +135,14 @@ def send_random_joke(message):
 def send_random_compliment(message):
     random_compliment = random.choice(COMPLIMENTS)
     bot.send_message(message.chat.id, random_compliment)
+    
+    
+@bot.message_handler(commands=['flip_a_coin'])
+def flip_coin(message):
+    coin_sides = ["Решка", "Орел"]
+    result = random.choice(coin_sides)
+    bot.send_message(message.chat.id, f"Выпала {result}!")
+
 
 @bot.message_handler(content_types=['photo'])
 def handle_photo(message):
